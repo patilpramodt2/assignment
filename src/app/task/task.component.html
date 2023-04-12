@@ -1,0 +1,19 @@
+<div class="header">
+    <p class="header-text">To-Do Tasks</p>
+    <p class="header-check">Check if task is completed</p>
+</div>
+
+<div class="card-container">
+    <div class="card" *ngFor="let task of tasks$ | async">
+        <div class="card-header">
+            <div class="task-id">{{ task.id }}) </div>
+            <span [ngClass]="{'completed': task.completed}">{{ task.title }}</span>
+            <input type="checkbox" [checked]="task.completed" (change)="onTaskChange(task)">
+        </div>
+    </div>
+</div>
+<div class="pagination">
+    <button (click)="loadPreviousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span class="current-page">Page {{ currentPage }} of 10 </span>
+    <button (click)="loadNextPage()" [disabled]="currentPage === 10">Next</button>
+</div>
